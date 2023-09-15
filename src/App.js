@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class SquareColor extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                squareColor1: "red",
+                squareColor2: "blue",
+            }
+        }
+
+        squareClick = () => {
+            this.setState((prevState) => ({
+                squareColor1: prevState.squareColor2,
+                squareColor2: prevState.squareColor1,
+            }))
+        }
+
+        render() {
+            const {squareColor1, squareColor2} = this.state
+
+            return (
+                <div className="SquareColor">
+                    <div className="square"
+                        style={{backgroundColor: squareColor1}}
+                        onClick={this.squareClick}>
+                    </div>
+                    <div className="square"
+                        style={{backgroundColor: squareColor2}}
+                        onClick={this.squareClick}>
+                    </div>
+                </div>
+            )
+        }
 }
 
-export default App;
+export default SquareColor;
